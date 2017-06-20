@@ -20,3 +20,5 @@ The Diffusion Analysis node, which is available from the Sources palette, propag
 Requirements. The node requires two fixed width text files containing the data to be analyzed. The first file defines the social network using three fields. One field identifies the source for each directed relationship, one field defines the destination for each directed relationship, and the third field specifies an optional strength for each relationship. All relationships in the network must be directional. The second file contains a list of identifiers from which the effect should begin.
 
 ## [Install Guide](https://github.com/IBMPredictiveAnalytics/Social_Network_Analysis/blob/master/sna_install_guide.md)
+
+## Requirement: Modeler 18.1 and upper
