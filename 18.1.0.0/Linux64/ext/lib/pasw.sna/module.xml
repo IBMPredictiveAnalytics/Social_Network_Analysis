@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ***************************************************************** -->
+<!--                                                                   -->
+<!-- Licensed Materials - Property of IBM                              -->
+<!--                                                                   -->
+<!-- IBM SPSS Products: <Analytic Components>                          -->
+<!--                                                                   -->
+<!-- (c)Copyright IBM Corp. 2012                                       -->
+<!--                                                                   -->
+<!-- US Government Users Restricted Rights - Use, duplication or       -->
+<!-- disclosure restricted by GSA ADP Schedule Contract with IBM       -->
+<!-- Corp.                                                             -->
+<!--                                                                   -->
+<!-- ***************************************************************** -->
+
+<Module xmlns="http://www.ibm.com/software/analytics/spss/xml/extension"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" debug="false" version="8.0"
+ xsi:schemaLocation="http://www.ibm.com/software/analytics/spss/xml/extension http://www.ibm.com/software/analytics/spss/xml/extension/ModuleSpecification.xsd">
+ <ModuleDetails copyright="(c) 2009 SPSS, Inc." description="SNA Module"
+  id="sna" label="SNA" provider="SPSS, Inc." providerTag="pasw" version="8.0"/>
+
+ <SharedLibrary basename="sna"/>
+
+ <Resources>
+  <Bundle id="sna_module_res" path="messages" type="properties"/>
+ </Resources>
+
+ <CommonObjects>
+  <PropertyTypes>
+   <!--  -->
+   <Enumeration id="AlgorithmType">
+    <Enum value="GA"/>
+    <Enum value="DA"/>
+   </Enumeration>
+  </PropertyTypes>
+ </CommonObjects>
+
+ <StatusCodes>
+  <!--  shared peer error code may be returned in the CF integration   -->
+  <StatusCode code="240000" status="error" messageKey="unknownErrorMsg.LABEL"/>
+  <StatusCode code="240001" status="error" messageKey="initErrMsg.LABEL"/>
+  <StatusCode code="240002" status="error" messageKey="inputErrMsg.LABEL"/>
+  <StatusCode code="240003" status="error" messageKey="internalErrMsg.LABEL"/>
+  <StatusCode code="240004" status="error" messageKey="invalidMetadataErrMsg.LABEL"/>
+  <StatusCode code="240005" status="error" messageKey="fileNotExistErrorMsg.LABEL"/>
+  <StatusCode code="240006" status="error" messageKey="storageNotSupportErrorMsg.LABEL"/>
+  <StatusCode code="240007" status="error" messageKey="invalidTargetErrorMsg.LABEL"/>
+  <StatusCode code="240008" status="error" messageKey="invalidTarResponseErrorMsg.LABEL"/>
+  <StatusCode code="240009" status="error" messageKey="predictorsEmptyErrMsg.LABEL"/>
+  <StatusCode code="240010" status="error" messageKey="targetAsInputErrorMsg.LABEL"/>
+  <StatusCode code="240011" status="error" messageKey="invalidFrequencyErrorMsg.LABEL"/>
+  <StatusCode code="240012" status="error" messageKey="invalidTargetResponseErrorMsg.LABEL"/>
+  <StatusCode code="240013" status="error" messageKey="invlidResponseCatErrorMsg.LABEL"/>
+  <StatusCode code="240014" status="error" messageKey="noFrequencyErrorMsg.LABEL"/>
+  <StatusCode code="240015" status="error" messageKey="noTargetErrorMsg.LABEL"/>
+  <StatusCode code="240016" status="error" messageKey="invalidtarValueMsg.LABEL"/>
+  <StatusCode code="240017" status="error" messageKey="getfilePathMsg.LABEL"/>
+  <StatusCode code="240018" status="error" messageKey="creationAlgorithmMsg.LABEL"/>
+  <StatusCode code="240019" status="error" messageKey="buildModelErrorMsg.LABEL"/>
+  <StatusCode code="240020" status="error" messageKey="assessModelErrorMsg.LABEL"/>
+  <StatusCode code="240021" status="error" messageKey="exportPMLLErrorMsg.LABEL"/>
+  <StatusCode code="240022" status="error" messageKey="getDataFieldErrorMsg.LABEL"/>
+  <StatusCode code="240023" status="error" messageKey="tarResIsSameErrorMsg.LABEL"/>
+  <StatusCode code="240024" status="error" messageKey="NoTargetFieldErrorMsg.LABEL"/>
+  <StatusCode code="240025" status="error" messageKey="NoTargetResFieldErrorMsg.LABEL"/>
+  <StatusCode code="240026" status="error" messageKey="targetResTrueErrorMsg.LABEL"/>
+  <StatusCode code="240027" status="error" messageKey="PMMLNotExistErrorMsg.LABEL"/>
+  <StatusCode code="240028" status="error" messageKey="PMMLIsInvalidErrorMsg.LABEL"/>
+  <StatusCode code="240029" status="error" messageKey="NoPredVarInPMMLErrorMsg.LABEL"/>
+  <StatusCode code="240030" status="error" messageKey="PMMLNotMatchDataErrorMsg.LABEL"/>
+  <StatusCode code="240031" status="error" messageKey="getDataSourceErrorMsg.LABEL"/>
+  <StatusCode code="240032" status="error" messageKey="dataFileISValidErrorMsg.LABEL"/>
+  <StatusCode code="240033" status="error" messageKey="TarFieldNOTMatchErrMsg.LABEL"/>
+  <StatusCode code="240034" status="error" messageKey="TRFieldNOTMatchErrMsg.LABEL"/>
+  <StatusCode code="240035" status="error" messageKey="FreFieldNOTMatchErrMsg.LABEL"/>
+  <StatusCode code="240036" status="error" messageKey="InputFieldNOTMatchMsg.LABEL"/>
+  <StatusCode code="240037" status="error" messageKey="NoValidRecordsMsg.LABEL"/>
+  <StatusCode code="240038" status="error" messageKey="NoRecordsScoringMsg.LABEL"/>
+  <StatusCode code="240039" status="error" messageKey="PartionInValidMsg.LABEL"/>
+  <StatusCode code="240040" status="error" messageKey="InputFieldConstantMsg.LABEL"/>
+  <StatusCode code="240041" status="error" messageKey="InvalidSettingsErrorMsg.LABEL"/>
+  <StatusCode code="240042" status="error" messageKey="NoValidFieldValuesErrorMsg.LABEL"/>
+  <!--  SNA error code returned to CF  -->
+  <StatusCode code="350010" status="error" messageKey="kSNA_InvalidSetting.LABEL"/>
+  <StatusCode code="350011" status="error" messageKey="kSNA_InvalidFieldName.LABEL"/>
+  <StatusCode code="350020" status="error" messageKey="kSNA_InputDataError.LABEL"/>
+  <StatusCode code="350030" status="error" messageKey="kSNA_InputDataValidateEncodeTypeError.LABEL"/>
+  <StatusCode code="350031" status="error" messageKey="kSNA_InputDiffusionFileValidateError.LABEL"/>
+  <StatusCode code="350043" status="error" messageKey="kSNA_SeedFileError.LABEL"/>
+  <StatusCode code="350044" status="error" messageKey="kSNA_TempFileError.LABEL"/>
+  <StatusCode code="350045" status="error" messageKey="kSNA_MemoryError.LABEL"/>
+  <StatusCode code="350046" status="error" messageKey="kSNA_AlgorithmError.LABEL"/>
+  <StatusCode code="350100" status="error" messageKey="kSNA_InternalError.LABEL"/>
+  
+  <StatusCode code="350109" status="error" messageKey="kSNA_TabiloaderReadXMLFileError.LABEL"/>
+  <StatusCode code="350110" status="error" messageKey="kSNA_TabiloaderOpenProcessFileError.LABEL"/>
+  <StatusCode code="350111" status="error" messageKey="kSNA_TabiloaderWriteFeaturesSparseError.LABEL"/>
+  <StatusCode code="350112" status="error" messageKey="kSNA_TabiloaderReadInputFormatFileError.LABEL"/>
+  <StatusCode code="350113" status="error" messageKey="kSNA_TabiloaderWriteProcessFileError.LABEL"/>
+  <StatusCode code="350114" status="error" messageKey="kSNA_TabiloaderSortingError.LABEL"/>
+  <StatusCode code="350115" status="error" messageKey="kSNA_TabiloaderWritePMLFileError.LABEL"/>
+  <StatusCode code="350116" status="error" messageKey="kSNA_TabiloaderAlgorithmProcessingMemoryError.LABEL"/>
+  <StatusCode code="350117" status="error" messageKey="kSNA_TabiloaderReadProcessFileError.LABEL"/>
+  <StatusCode code="350118" status="error" messageKey="kSNA_TabiloaderUpdateMapError.LABEL"/>
+  <StatusCode code="350130" status="error" messageKey="kSNA_TabiloaderAlgorithmError.LABEL"/>
+  <StatusCode code="350190" status="warning" messageKey="kSNA_TabiloaderReedProcessFileCalleeWarning.LABEL"/>
+  <StatusCode code="350191" status="warning" messageKey="kSNA_TabiloaderReedProcessFileCallerWarning.LABEL"/>
+  <StatusCode code="350192" status="warning" messageKey="kSNA_TabiloaderReedOmittedLinesWarning.LABEL"/>
+  
+  <StatusCode code="350210" status="error" messageKey="kSNA_TabiPmlexecWriteOutPutFileError.LABEL"/>   
+  <StatusCode code="350211" status="error" messageKey="kSNA_TabiPmlexecOpenOutputFileError.LABEL"/> 
+  <StatusCode code="350212" status="error" messageKey="kSNA_TabiPmlexecOpenParameterFileError.LABEL"/>    
+  <StatusCode code="350213" status="error" messageKey="kSNA_TabiPmlexecOpenInputFileError.LABEL"/>        
+  <StatusCode code="350214" status="error" messageKey="kSNA_TabiPmlexecOpenInputFileInfoError.LABEL"/>     
+  <StatusCode code="350215" status="error" messageKey="kSNA_TabiPmlexecKernalInternalStatusError.LABEL"/>  
+  <StatusCode code="350216" status="error" messageKey="kSNA_TabiPmlexecKernalInternalSample_Error.LABEL"/> 
+  <StatusCode code="350217" status="error" messageKey="kSNA_TabiPmlexecCorruptedInputHeaderError.LABEL"/>
+  <StatusCode code="350218" status="error" messageKey="kSNA_TabiPmlexecCorruptedInputFooter_Error.LABEL"/> 
+  <StatusCode code="350219" status="error" messageKey="kSNA_TabiPmlexecCorruptedInputBoundError.LABEL"/>  
+  <StatusCode code="350220" status="error" messageKey="kSNA_ACCESS_RESTRICTED_TO_FILE.LABEL"/> 
+  <StatusCode code="350290" status="warning" messageKey="kSNA_TabiPmlexecWrongLineNumberWarning"/>  
+  <StatusCode code="350291" status="warning" messageKey="kSNA_TabiPmlexecMaxClusterSizeWarning"/>  
+  <StatusCode code="350292" status="warning" messageKey="kSNA_TabiPmlexecEmptyLineWarning"/>
+  <StatusCode code="350293" status="warning" messageKey="kSNA_TabiPmlexecSumValueRowWarning"/>
+
+  <StatusCode code="350300" status="error" messageKey="kSNA_TabiMICH2Error.LABEL"/>
+  <StatusCode code="359999" status="error" messageKey="kSNA_InternalError.LABEL"/>
+   
+ </StatusCodes>
+
+ <ContainerTypes>
+	<ContainerType id="ct_oc_sna_info" mimeType="xml" resourceKey="" fileSuffix=""/>
+	<ContainerType id="ct_oc_sna_statxml" mimeType="xml" resourceKey="" fileSuffix=""/>
+ </ContainerTypes>
+
+ <Component id="sna">
+  <Capabilities>
+  </Capabilities>
+
+  <Containers>
+	<Container name="SNAInfo" type="ct_oc_sna_info" usage="output" runtimeProperty=""/>
+	<Container name="StatXML" type="ct_oc_sna_statxml" usage="output" runtimeProperty=""/>
+  </Containers>
+
+  <Properties>
+   <Property name="Algorithm" type="AlgorithmType" defaultValue="GA"/>
+   <Property name="InputDataFileName" valueType="string" isList="false" defaultValue=""/>
+   <Property name="CallingField" valueType="fieldName" isList="false" defaultValue=""/>
+   <Property name="CalledField" valueType="fieldName" isList="false" defaultValue=""/>
+   <Property name="FrequencyWeightField" valueType="fieldName" isList="false" defaultValue=""/>
+   <Property name="ReadFieldNames" valueType="boolean" defaultValue="true"/>
+   <Property name="CachedKPIDataFileName" valueType="string" defaultValue=""/>
+   <Property name="MultipleLoaderThread" valueType="boolean" defaultValue="false"/>
+   <Property name="NumberOfPartition" valueType="integer" defaultValue="1" min="1"/>
+   <Property name="CalculateStatistics" valueType="boolean" defaultValue="true"/>
+   <Property name="SNAInfoCache" valueType="string" defaultValue=""/>
+   <Property name="StatXMLCache" valueType="string" defaultValue=""/>
+   <!--  GA Setting  -->
+   <Property name="CoverageThreshold" valueType="double" defaultValue="10" min="1" max="99"/>
+   <Property name="MinGroupSize" valueType="integer" defaultValue="2" min="2"/>
+   <Property name="MaxGroupSize" valueType="integer" defaultValue="100" min="2"/>
+    
+   <!--  DA Setting  -->
+   <Property name="DiffusionListFileName" valueType="string" isList="false" defaultValue=""/>
+   <Property name="SpreadingFactor" valueType="double" defaultValue="50" min="1" max="99"/>
+   <Property name="MaxNumberOfIterations" valueType="integer" defaultValue="100" min="1"/>
+   <Property name="AccuracyThreshold" valueType="double" defaultValue="0.01" min="0.001"/>
+  </Properties>
+
+  <Constraints></Constraints>
+ </Component>
+</Module>
